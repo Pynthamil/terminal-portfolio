@@ -150,7 +150,7 @@ technologies and creating things that make people say "why though?"`
       {/* Terminal Body */}
       <div 
         ref={terminalRef}
-        className="bg-black border-t-4 border-blue-200 p-4 h-50 overflow-y-auto font-mono text-sm cursor-text"
+        className="bg-black border-t-4 border-blue-200 p-4 h-40 overflow-y-auto font-mono text-sm cursor-text"
         onClick={() => inputRef.current?.focus()}
       >
         {/* Command History */}
