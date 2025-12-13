@@ -5,12 +5,14 @@ import "./globals.css";
 import Image from "next/image";
 import Link from "next/link";
 
+
 import img1 from "../public/Group 61.svg";
 import img2 from "../public/image 9.svg";
 import Folder from '../components/Folder';
 
 import CmdLine from "@/components/CmdLine";
 import CommitHistory from "../components/CommitHistory";
+import { Globe } from "@/components/ui/globe";
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
@@ -72,7 +74,14 @@ export default function RootLayout({
                     <li key={label} className="m-3">
                       <a 
                         href={href}
-                        className="flex flex-col items-center gap-2 transition-opacity focus:outline-none focus:ring-2 rounded p-2"
+                        className="flex flex-col items-center gap-2 rounded p-2
+                          transition-opacity
+                          focus-visible:outline-none
+                          focus-visible:ring-2
+                          focus-visible:ring-blue-300
+                          focus-visible:ring-offset-2
+                          focus-visible:ring-offset-white
+                        "
                         aria-label={`Visit ${label}`}
                       >
                         <div style={{ height: '80px', position: 'relative' }}>
@@ -159,12 +168,8 @@ export default function RootLayout({
                 <div className="font-mono text-sm">searching</div>
               </div>
 
-              <div className="border-4 border-blue-200 overflow-hidden">
-                <Image
-                  src={img2}
-                  alt="Portfolio graphic"
-                  className="w-full h-auto"
-                />
+              <div className="border-4 border-blue-200 relative overflow-hidden h-[600px]">
+                <Globe />
               </div>
 
             </div>
