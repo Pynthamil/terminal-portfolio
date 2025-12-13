@@ -4,9 +4,26 @@ import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 /* =========================
+   TYPES
+========================= */
+type Education = {
+  degree: string;
+  institution: string;
+  location: string;
+  period: string;
+  cgpa?: string;
+  status: "currently pursuing" | string;
+  courses?: string[];
+};
+
+type EducationCardProps = {
+  education: Education;
+};
+
+/* =========================
    EDUCATION DATA
 ========================= */
-const educationData = [
+const educationData: Education[] = [
   {
     degree: "Bachelor of Technology in Computer Science and Engineering",
     institution: "Vellore Institute of Technology",
@@ -20,14 +37,14 @@ const educationData = [
       "Database Management Systems",
       "Computer Networks",
       "Object-Oriented Programming",
-    ]
-  }
+    ],
+  },
 ];
 
 /* =========================
    EDUCATION CARD
 ========================= */
-function EducationCard({ education }) {
+function EducationCard({ education }: EducationCardProps) {
   const progressPercent = 75;
   const progressBlocks = 30;
   const filledBlocks = Math.round((progressPercent / 100) * progressBlocks);
@@ -38,16 +55,18 @@ function EducationCard({ education }) {
       <div className="border border-blue-500 p-3 mb-3">
         <div className="flex items-start justify-between mb-2">
           <div className="flex-1">
-            <div className="text-blue-400 text-xs mb-1">╔═══ DEGREE ═══╗</div>
+            <div className="text-blue-400 text-xs mb-1">
+              ╔═══ DEGREE ═══╗
+            </div>
             <h3 className="text-blue-300 text-base font-bold mb-2 uppercase tracking-wide">
               {education.degree}
             </h3>
           </div>
           <span className="text-green-400 text-xs border border-green-400 px-2 py-1">
-            [{education.status.replace(' ', '_').toUpperCase()}]
+            [{education.status.replace(" ", "_").toUpperCase()}]
           </span>
         </div>
-        
+
         <div className="text-gray-300 text-sm mb-1">
           <span className="text-blue-400">►</span> {education.institution}
         </div>
@@ -62,6 +81,7 @@ function EducationCard({ education }) {
           <div className="text-gray-500 text-xs mb-1">PERIOD:</div>
           <div className="text-white">{education.period}</div>
         </div>
+
         {education.cgpa && (
           <div className="border border-gray-700 p-2">
             <div className="text-gray-500 text-xs mb-1">CGPA:</div>
@@ -78,7 +98,10 @@ function EducationCard({ education }) {
           </div>
           <div className="space-y-1 text-xs">
             {education.courses.map((course, idx) => (
-              <div key={idx} className="text-gray-300 flex items-start gap-2">
+              <div
+                key={idx}
+                className="text-gray-300 flex items-start gap-2"
+              >
                 <span className="text-blue-400 mt-0.5">•</span>
                 <span>{course}</span>
               </div>
@@ -102,7 +125,8 @@ function EducationCard({ education }) {
             <span className="text-gray-700">
               {"░".repeat(progressBlocks - filledBlocks)}
             </span>
-            ] <span className="text-blue-400">{progressPercent}%</span>
+            ]{" "}
+            <span className="text-blue-400">{progressPercent}%</span>
           </div>
         </div>
       )}
@@ -114,9 +138,13 @@ function EducationCard({ education }) {
    MAIN PANEL
 ========================= */
 export default function EducationPanel() {
-  const [browserTab, setBrowserTab] = useState("education.dev");
+  const [browserTab, setBrowserTab] = useState<string>("education.dev");
 
-  const browserTabs = ['education.dev', 'portfolio.dev', 'help'];
+  const browserTabs: string[] = [
+    "education.dev",
+    "portfolio.dev",
+    "help",
+  ];
 
   return (
     <div className="w-full bg-black flex flex-col font-mono">
@@ -130,13 +158,14 @@ export default function EducationPanel() {
                 onClick={() => setBrowserTab(btab)}
                 className={`px-5 py-2 text-sm transition-colors relative ${
                   browserTab === btab
-                    ? 'bg-white text-gray-800'
-                    : 'bg-blue-300 text-gray-700 hover:bg-blue-250'
+                    ? "bg-white text-gray-800"
+                    : "bg-blue-300 text-gray-700 hover:bg-blue-250"
                 }`}
                 style={{
-                  clipPath: 'polygon(12px 0%, calc(100% - 12px) 0%, 100% 100%, 0% 100%)',
-                  borderTopLeftRadius: '12px',
-                  borderTopRightRadius: '12px',
+                  clipPath:
+                    "polygon(12px 0%, calc(100% - 12px) 0%, 100% 100%, 0% 100%)",
+                  borderTopLeftRadius: "12px",
+                  borderTopRightRadius: "12px",
                 }}
               >
                 {btab}
@@ -164,10 +193,7 @@ export default function EducationPanel() {
 
       {/* Education Panel */}
       <div className="border-4 border-t-0 border-blue-200 bg-black shadow-lg">
-    
-
-        {/* Content */}
-        <div className="p-5 space-y-4 h-[520px] overflow-y-auto">
+        <div className="p-5 space-y-4 h-[495px] overflow-y-auto">
           {educationData.map((education, index) => (
             <EducationCard key={index} education={education} />
           ))}
