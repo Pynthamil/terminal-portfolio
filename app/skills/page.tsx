@@ -142,7 +142,7 @@ export default function SkillsPanel() {
       </div>
 
       {/* Skills Panel */}
-      <div className="border-4 border-blue-300 bg-black shadow-lg">
+      <div className="border-4 border-blue-200 bg-black shadow-lg">
         {/* Content */}
         <div className="p-5 space-y-1 h-[500px] overflow-y-auto">
           {skillsData[tab].map((skill) => (

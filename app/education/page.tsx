@@ -16,10 +16,6 @@ type Education = {
   courses?: string[];
 };
 
-type EducationCardProps = {
-  education: Education;
-};
-
 /* =========================
    EDUCATION DATA
 ========================= */
@@ -44,7 +40,7 @@ const educationData: Education[] = [
 /* =========================
    EDUCATION CARD
 ========================= */
-function EducationCard({ education }: EducationCardProps) {
+function EducationCard({ education }: { education: Education }) {
   const progressPercent = 75;
   const progressBlocks = 30;
   const filledBlocks = Math.round((progressPercent / 100) * progressBlocks);
